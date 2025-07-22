@@ -1,8 +1,21 @@
 interface Contact {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
+  clone(): Contact;
 }
 
-function clone(source) {
-    return Object.apply({}, source);
+function cloneContact(source: Contact): Contact {
+  return Object.apply({}, source);
 }
+
+const a: Contact = {
+  id: 123,
+  name: "Homer Simpson",
+  clone(): Contact {
+    return cloneContact(this);
+  }
+};
+
+const b = a.clone();
+
+console.log(b.name);
